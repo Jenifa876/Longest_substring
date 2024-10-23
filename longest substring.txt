@@ -1,0 +1,27 @@
+#include<iostream>
+#include<string>
+#include<unordered_map>
+#include<algorithm>
+using namespace std;
+int main()
+{
+    string s;
+    int l=0,max_len=0,max_fre=0,k;
+    cout<<"Enter the string:";
+    cin>>s;
+    cout<<"Enter the integer:";
+    cin>>k;
+    unordered_map<char,int> hash;
+    for(int r=0;r<s.length();r++)
+    {
+        hash[s[r]]++;
+        max_fre=max(max_fre,hash[s[r]]);
+        if((r-l+1)-max_fre>k)
+        {
+            hash[s[l]]--;
+            l++;
+        }
+        max_len=max(max_len,r-l+1);
+    }
+    cout<<"Maximum length= "<<max_len;
+}
